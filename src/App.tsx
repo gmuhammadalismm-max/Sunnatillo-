@@ -243,6 +243,7 @@ export default function App() {
     return defaultPortfolioData;
   });
 
+  const [isLoading, setIsLoading] = useState<boolean>(true);
   const [realtimeMessages, setRealtimeMessages] = useState<ClientMessage[]>([]);
 
   // Load studio session status
@@ -276,8 +277,10 @@ export default function App() {
           console.error("Firestore database seed error:", err);
         });
       }
+      setIsLoading(false);
     }, (error) => {
       console.error("Firestore loading error:", error);
+      setIsLoading(false);
     });
     return () => unsubscribe();
   }, []);
@@ -461,6 +464,37 @@ export default function App() {
 
   // Unread messages counts (loaded live from Firestore!)
   const unreadCount = realtimeMessages.filter(m => !m.read).length;
+
+  if (isLoading) {
+    return (
+      <div className="min-h-screen bg-[#09090b] flex flex-col items-center justify-center text-white relative font-sans overflow-hidden">
+        {/* Subtle grid blueprint lines in background */}
+        <div className="absolute inset-0 bg-grid-blueprint opacity-40" />
+        
+        {/* Ambient glow */}
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] bg-indigo-500/5 rounded-full blur-[100px] pointer-events-none" />
+        
+        <div className="relative z-10 flex flex-col items-center space-y-5 max-w-sm px-6 text-center">
+          {/* Pulse animation for logo */}
+          <div className="relative">
+            <div className="absolute inset-0 bg-indigo-500/20 rounded-2xl blur-xl animate-pulse" />
+            <div className="w-14 h-14 rounded-2xl bg-zinc-900 border border-zinc-800 flex items-center justify-center text-2xl shadow-2xl relative select-none animate-float-slow">
+              🎨
+            </div>
+          </div>
+          
+          <div className="space-y-1.5 animate-pulse">
+            <h2 className="text-sm font-bold tracking-widest text-white/90 font-sans select-none">
+              MUHAMMADALI DESIGN
+            </h2>
+            <p className="text-[10px] font-mono text-zinc-500 tracking-widest uppercase">
+              PORTFOLIO YUKLANMOQDA...
+            </p>
+          </div>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className={`min-h-screen ${style.bg} ${style.text} font-sans transition-colors duration-300 relative pb-20`}>
@@ -1252,16 +1286,11 @@ export default function App() {
           &copy; 2026 {data.profile.name}. Barcha huquqlar himoyalangan. Kreativ grafik dizayn xizmatlari.
         </p>
         <div className="flex flex-col items-center justify-center gap-1.5 text-[11px] opacity-70">
-          <div className="flex items-center gap-1 opacity-75">
-            <span>Yaratilgan va Tahrirlangan</span>
-            <Heart size={10} className="text-red-500 animate-pulse fill-red-500" />
-            <span>Foydalanuvchi tomonidan hisoblangan</span>
-          </div>
           <a
             href="https://muhammadai.uz"
             target="_blank"
             rel="noopener noreferrer"
-            className={`font-sans text-xs tracking-wide mt-1.5 px-3 py-1 rounded-full border transition-all inline-flex items-center gap-1.5 hover:shadow-sm ${
+            className={`font-sans text-xs tracking-wide px-3 py-1.5 rounded-full border transition-all inline-flex items-center gap-1.5 hover:shadow-sm ${
               isDark 
                 ? 'text-indigo-400 bg-indigo-500/5 hover:bg-indigo-500/10 border-indigo-500/10 hover:border-indigo-500/20' 
                 : 'text-[#827F6A] bg-[#827F6A]/5 hover:bg-[#827F6A]/10 border-[#827F6A]/10 hover:border-[#827F6A]/20'
