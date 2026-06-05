@@ -612,21 +612,30 @@ export default function EditDialogs({
               </div>
 
               <div className="border-t border-dashed border-zinc-800/80 pt-4 space-y-3">
-                <h4 className="text-sm font-semibold text-indigo-400">Ijtimoiy Tarmoqlar Linklari</h4>
-                <div className="grid grid-cols-2 gap-3">
-                  <div>
-                    <label className="block text-[10px] font-mono opacity-60 mb-1">Telegram Link</label>
-                    <input
-                      type="text"
-                      value={profileForm.socials.telegram || ''}
-                      onChange={(e) => setProfileForm({
-                        ...profileForm,
-                        socials: { ...profileForm.socials, telegram: e.target.value }
-                      })}
-                      className="w-full px-2.5 py-1.5 rounded-lg bg-zinc-900 border border-zinc-800 text-xs text-zinc-300"
-                      placeholder="https://t.me/telegram_username"
-                    />
+                <h4 className="text-sm font-semibold text-indigo-400">Ijtimoiy Tarmoqlar & Telegram Portfolio Linklari</h4>
+                
+                {/* Highlighted Telegram Portfolio Block */}
+                <div className="p-3.5 rounded-xl bg-indigo-500/5 border border-indigo-500/20 space-y-2">
+                  <div className="flex items-center justify-between">
+                    <label className="block text-xs font-bold text-indigo-400">Telegram Portfolio Kanal Linki</label>
+                    <span className="text-[10px] bg-indigo-500/10 text-indigo-300 px-1.5 py-0.5 rounded uppercase font-mono">Asosiy Link</span>
                   </div>
+                  <input
+                    type="text"
+                    value={profileForm.socials.telegram || ''}
+                    onChange={(e) => setProfileForm({
+                      ...profileForm,
+                      socials: { ...profileForm.socials, telegram: e.target.value }
+                    })}
+                    className="w-full px-3 py-2 rounded-lg bg-zinc-950 border border-zinc-800 text-xs text-white focus:border-indigo-500 focus:outline-none transition-colors"
+                    placeholder="Masalan: https://t.me/muhammadali_design"
+                  />
+                  <p className="text-[10px] text-zinc-400 leading-normal">
+                    Bu havola saytdagi barcha <b>"Telegram Portfolio"</b> tugmalari va sarlavhalarini sizning shaxsiy yoki ijodiy kanalingizga yo'naltiradi.
+                  </p>
+                </div>
+
+                <div className="grid grid-cols-2 gap-3">
                   <div>
                     <label className="block text-[10px] font-mono opacity-60 mb-1">Instagram Link</label>
                     <input

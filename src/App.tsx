@@ -925,6 +925,65 @@ export default function App() {
           )}
         </section>
 
+        {/* SECTION: TELEGRAM PORTFOLIO CTA BLOCK */}
+        <section id="telegram-portfolio-cta" className="relative">
+          <div className={`p-6 md:p-8 rounded-3xl ${style.cardBg} border ${isDark ? 'border-zinc-850' : 'border-[#DCD9D0]'} overflow-hidden relative group transition-all text-left`}>
+            {/* Ambient visual background glow for premium design */}
+            <div className={`absolute top-0 right-0 w-80 h-80 ${isDark ? 'bg-indigo-600/10' : 'bg-[#827F6A]/5'} rounded-full blur-3xl pointer-events-none -mr-20 -mt-20`} />
+            
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center relative z-10">
+              {/* Content description */}
+              <div className="lg:col-span-8 space-y-4">
+                <div className="flex items-center gap-2">
+                  <span className={`px-2.5 py-0.5 text-[10px] font-mono tracking-widest uppercase rounded-full ${isDark ? 'bg-indigo-500/10 text-indigo-400 border-indigo-500/25' : 'bg-[#827F6A]/10 text-[#827F6A] border-[#827F6A]/25'} border flex items-center gap-1`}>
+                    <span className="w-1.5 h-1.5 rounded-full bg-indigo-500 animate-pulse" />
+                    TELEGRAM PORTFOLIO KANALI
+                  </span>
+                </div>
+                
+                <h2 className={`text-2xl md:text-3xl font-black tracking-tight ${headingFont} ${isDark ? 'text-white' : 'text-[#3C3A33]'}`}>
+                  Telegramdagi To'liq Ijodiy Portfoliom
+                </h2>
+                
+                <p className="text-sm opacity-80 leading-relaxed max-w-2xl">
+                  Mening barcha tezkor ishlarim, loyihalar ortidagi jonli fikrlash jarayonlari, bepul dizayn manbalari (mockuplar, shriftlar, teksturalar) hamda foydali maslahatlarim ulashib boriladigan asosiy resurs va aloqa kanalimga obuna bo'ling. Saytdagi galereyaga sig'magan original dizayn o'lchamlarini eng kamchiliksiz shu erda kuzatishingiz mumkin.
+                </p>
+
+                <div className="flex flex-wrap gap-4 pt-1">
+                  <div className="flex items-center gap-1.5 text-xs opacity-70">
+                    <span className="text-indigo-500">✓</span> 
+                    <span>Muntazam yangi ishlar va prevyular</span>
+                  </div>
+                  <div className="flex items-center gap-1.5 text-xs opacity-70">
+                    <span className="text-indigo-500">✓</span> 
+                    <span>Bepul manbalar (Mockuplar, shriftlar)</span>
+                  </div>
+                  <div className="flex items-center gap-1.5 text-xs opacity-70">
+                    <span className="text-indigo-500">✓</span> 
+                    <span>Xizmatlar bo'yicha to'g'ridan-to'g'ri bog'lanish</span>
+                  </div>
+                </div>
+              </div>
+
+              {/* Redirection button */}
+              <div className="lg:col-span-4 flex justify-start lg:justify-end">
+                <a
+                  href={data.profile.socials.telegram || "https://t.me/muhammadali_design"}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center justify-center gap-2.5 px-6 py-3.5 md:px-8 rounded-2xl bg-indigo-600 hover:bg-indigo-700 text-white font-bold text-sm shadow-lg hover:shadow-indigo-500/20 active:scale-95 transition-all w-full md:w-auto text-center cursor-pointer"
+                >
+                  <svg className="w-5 h-5 fill-current" viewBox="0 0 24 24">
+                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69.01-.03.01-.14-.07-.2-.08-.06-.19-.04-.27-.02-.11.02-1.93 1.23-5.46 3.62-.51.35-.98.53-1.4.51-.46-.01-1.35-.26-2.01-.48-.81-.27-1.46-.42-1.4-.88.03-.24.37-.49 1.03-.75 4.04-1.76 6.74-2.92 8.1-3.48 3.84-1.6 4.64-1.88 5.16-1.89.11 0 .37.03.54.17.14.12.18.28.2.45-.02.07-.02.13-.03.17z"/>
+                  </svg>
+                  <span>Telegram kanalga o'tish</span>
+                  <ExternalLink size={14} />
+                </a>
+              </div>
+            </div>
+          </div>
+        </section>
+
         {/* SECTION: SKILLS & RATINGS GRID */}
         <section id="developer-skills" className="space-y-6">
           <div className="flex items-center justify-between">

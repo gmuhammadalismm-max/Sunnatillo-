@@ -112,20 +112,29 @@ export default function ProjectModal({
           className={`relative w-full max-w-4xl max-h-[92vh] overflow-y-auto rounded-2xl ${theme.bg} ${theme.text} border ${theme.borderColor} shadow-2xl z-10`}
         >
           {/* Main Visual Carousel area */}
-          <div className="relative h-72 md:h-[420px] w-full bg-zinc-950 overflow-hidden group">
+          <div className="relative h-72 md:h-[460px] w-full bg-zinc-950 overflow-hidden group">
             
             {/* Slide active view */}
-            <div className="w-full h-full relative flex items-center justify-center">
+            <div className="w-full h-full relative flex items-center justify-center bg-zinc-950">
+              {/* Blurred background backing for premium, organic context filling */}
+              <img
+                src={currentSlide.url}
+                alt=""
+                className="absolute inset-0 w-full h-full object-cover opacity-20 blur-2xl scale-110 pointer-events-none"
+                referrerPolicy="no-referrer"
+              />
+
+              {/* Exact full original image (not cropped, object-contain stays fully pristine) */}
               <img
                 src={currentSlide.url}
                 alt={project.title}
-                className={`w-full h-full object-cover transition-all duration-300 ${currentSlide.filterClass || ""}`}
+                className={`relative max-w-full max-h-full object-contain z-10 transition-all duration-300 ${currentSlide.filterClass || ""}`}
                 referrerPolicy="no-referrer"
               />
               
               {/* Overlay blueprint system grids if toggled */}
               {currentSlide.isGridOverlay && (
-                <div className="absolute inset-0 pointer-events-none opacity-40 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] [background-size:24px_24px] flex flex-col justify-between p-6">
+                <div className="absolute inset-0 pointer-events-none opacity-40 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] [background-size:24px_24px] flex flex-col justify-between p-6 z-20">
                   <div className="w-full flex justify-between text-[9px] text-[#827F6A] font-mono leading-none tracking-widest uppercase">
                     <span>GRID PRECISE AXIS</span>
                     <span>SCALE RATIO: 1.618</span>
@@ -135,7 +144,7 @@ export default function ProjectModal({
               )}
             </div>
 
-            <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/35 to-transparent pointer-events-none" />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/15 to-transparent pointer-events-none z-10" />
             
             {/* Slide Navigation Controls */}
             {slides.length > 1 && (
