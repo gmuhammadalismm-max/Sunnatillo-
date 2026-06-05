@@ -1251,10 +1251,26 @@ export default function App() {
         <p className="text-xs opacity-80 max-w-sm mx-auto font-sans">
           &copy; 2026 {data.profile.name}. Barcha huquqlar himoyalangan. Kreativ grafik dizayn xizmatlari.
         </p>
-        <div className="flex justify-center items-center gap-1 text-[11px] opacity-60">
-          <span>Yaratilgan va Tahrirlangan</span>
-          <Heart size={10} className="text-red-500 animate-pulse fill-red-500" />
-          <span>Foydalanuvchi tomonidan hisoblangan</span>
+        <div className="flex flex-col items-center justify-center gap-1.5 text-[11px] opacity-70">
+          <div className="flex items-center gap-1 opacity-75">
+            <span>Yaratilgan va Tahrirlangan</span>
+            <Heart size={10} className="text-red-500 animate-pulse fill-red-500" />
+            <span>Foydalanuvchi tomonidan hisoblangan</span>
+          </div>
+          <a
+            href="https://muhammadai.uz"
+            target="_blank"
+            rel="noopener noreferrer"
+            className={`font-sans text-xs tracking-wide mt-1.5 px-3 py-1 rounded-full border transition-all inline-flex items-center gap-1.5 hover:shadow-sm ${
+              isDark 
+                ? 'text-indigo-400 bg-indigo-500/5 hover:bg-indigo-500/10 border-indigo-500/10 hover:border-indigo-500/20' 
+                : 'text-[#827F6A] bg-[#827F6A]/5 hover:bg-[#827F6A]/10 border-[#827F6A]/10 hover:border-[#827F6A]/20'
+            }`}
+          >
+            <span className="opacity-75">Powered by</span>
+            <span className="font-bold underline underline-offset-2">muhammadai.uz</span>
+            <span className="opacity-75">hamkorligida</span>
+          </a>
         </div>
         
         {/* Secret trigger at the very bottom */}
