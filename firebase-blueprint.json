@@ -1,0 +1,96 @@
+{
+  "entities": {
+    "Portfolio": {
+      "title": "PortfolioData",
+      "description": "Complete portfolio content structure",
+      "type": "object",
+      "properties": {
+        "profile": {
+          "type": "object",
+          "description": "User profile, social profiles, and visual banner urls"
+        },
+        "projects": {
+          "type": "array",
+          "description": "Array of projects with custom galleries"
+        },
+        "skills": {
+          "type": "array",
+          "description": "List of design tools and concepts"
+        },
+        "experiences": {
+          "type": "array",
+          "description": "Work history timeline entries"
+        },
+        "testimonials": {
+          "type": "array",
+          "description": "Client reviews & references"
+        },
+        "messages": {
+          "type": "array",
+          "description": "List of client messages in portfolio"
+        },
+        "currentTheme": {
+          "type": "string",
+          "description": "Current active aesthetic preset"
+        },
+        "adminPasscode": {
+          "type": "string",
+          "description": "Admin panel login passcode"
+        },
+        "updatedAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Server modified timestamp"
+        }
+      },
+      "required": ["profile", "projects", "skills", "experiences", "testimonials"]
+    },
+    "ContactMessage": {
+      "title": "ContactMessage",
+      "description": "Messages sent by visitors via the contact form",
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Name of the visitor"
+        },
+        "email": {
+          "type": "string",
+          "description": "Visitor email address"
+        },
+        "subject": {
+          "type": "string",
+          "description": "Project category or direction chosen"
+        },
+        "message": {
+          "type": "string",
+          "description": "Idea description text"
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Message creation timestamp"
+        },
+        "date": {
+          "type": "string",
+          "description": "Short date string (YYYY-MM-DD)"
+        },
+        "read": {
+          "type": "boolean",
+          "description": "Read status by the designer"
+        }
+      },
+      "required": ["name", "email", "subject", "message", "createdAt"]
+    }
+  },
+  "firestore": {
+    "/portfolio/{documentId}": {
+      "schema": "Portfolio",
+      "description": "Global shared portfolio configs storing editable portfolio contents"
+    },
+    "/messages/{messageId}": {
+      "schema": "ContactMessage",
+      "description": "Messages submitted from prospective clients"
+    }
+  }
+}

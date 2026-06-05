@@ -1,0 +1,6 @@
+{
+  "name": "Graphic Designer Portfolio",
+  "description": "An interactive, fully editable graphic designer portfolio website with real-time content management, customizable projects, experience timelines, expertise ratings, and custom design layouts.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

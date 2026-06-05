@@ -1,0 +1,53 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // Default-deny catch-all safety net
+    match /{document=**} {
+      allow read, write: if false;
+    }
+
+    // Global utility validators
+    function isValidId(id) {
+      return id is string && id.size() <= 128 && id.matches('^[a-zA-Z0-9_\\-]+$');
+    }
+
+    function incoming() {
+      return request.resource.data;
+    }
+
+    // Checks that incoming Portfolio matches strict format criteria
+    function isValidPortfolio(data) {
+      return data.keys().hasAll(['profile', 'projects', 'skills', 'experiences', 'testimonials'])
+        && data.keys().size() <= 9
+        && data.profile is map
+        && data.projects is list
+        && data.skills is list
+        && data.experiences is list
+        && data.testimonials is list;
+    }
+
+    // Checks that messages submitted via contacts meet high validity limits
+    function isValidMessage(data) {
+      return data.keys().hasAll(['name', 'email', 'subject', 'message', 'createdAt'])
+        && data.keys().size() <= 7
+        && data.name is string && data.name.size() > 0 && data.name.size() <= 128
+        && data.email is string && data.email.size() > 0 && data.email.size() <= 128
+        && data.subject is string && data.subject.size() >= 0 && data.subject.size() <= 200
+        && data.message is string && data.message.size() > 0 && data.message.size() <= 5000;
+    }
+
+    // Rule matchers
+    match /portfolio/{documentId} {
+      allow read: if true;
+      allow create, update: if isValidId(documentId) && isValidPortfolio(incoming());
+      allow delete: if false; // Safeguard against deletion of core configuration document
+    }
+
+    match /messages/{messageId} {
+      allow read: if true; // Let administrator/presenter view messages inside the control panel
+      allow create: if isValidId(messageId) && isValidMessage(incoming());
+      allow update, delete: if true; // Let admin toggle "read" status or clear logs
+    }
+  }
+}
